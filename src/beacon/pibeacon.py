@@ -20,6 +20,8 @@ from beacon.dhbwbeacon import DhbwBeacon
 from beacon.hci import HCI
 from comm.intcomm import IntComm
 from comm.intmessage import IntMessage as IntMsg
+from rfcomm.server import Server
+import _thread
 
 class PiBeacon(IntComm):
 
@@ -27,10 +29,12 @@ class PiBeacon(IntComm):
     _currentBeacon = None
     _running = False
     _hci = None
+    _server = None
 
     def __init__(self, commCallback, ble_dev):
         self._commCallback = commCallback
         self._hci = HCI(ble_dev)
+        self._server = Server(commCallback)
 
     def comm(self, msg):
         pass
@@ -83,6 +87,16 @@ class PiBeacon(IntComm):
         data = self._currentBeacon.start()
         self._commCallback(IntMsg(IntMsg.SIGNAL_ALTBEACON, {'DATA': 'Starting Altbeacon:\n'+' '.join(data).upper()}))
         self._running = True
+
+    def pairing_enable(self):
+        self._commCallback(IntMsg(IntMsg.SIGNAL_DHBWBEACON, {'DATA': 'Pairing enabled'}))
+        rfcomm = _thread.start_new_thread(self._server.startServer,())
+        print('ok')
+
+    def pairing_disable(self):    
+        self._commCallback(IntMsg(IntMsg.SIGNAL_DHBWBEACON, {'DATA': 'Pairing disabled'}))
+        self._server.stopServer()
+        print('not ok')
 
     def start(self):
         raise NotImplemented

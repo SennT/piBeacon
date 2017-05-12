@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'BeaconUI.ui'
 #
-# Created: Mon Sep  5 17:18:58 2016
+# Created: Mon May  8 09:21:40 2017
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -401,6 +401,25 @@ class Ui_PiBeacon(object):
         self.label_25 = QtGui.QLabel(self.groupBox_22)
         self.label_25.setGeometry(QtCore.QRect(0, 90, 101, 17))
         self.label_25.setObjectName(_fromUtf8("label_25"))
+        self.checkBox = QtGui.QCheckBox(self.groupBox_22)
+        self.checkBox.setGeometry(QtCore.QRect(400, 170, 99, 26))
+        self.checkBox.setObjectName(_fromUtf8("checkBox"))
+        self.dbaktuellerdatastringnid_2 = QtGui.QLineEdit(self.groupBox_22)
+        self.dbaktuellerdatastringnid_2.setGeometry(QtCore.QRect(490, 170, 131, 27))
+        self.dbaktuellerdatastringnid_2.setText(_fromUtf8(""))
+        self.dbaktuellerdatastringnid_2.setMaxLength(20)
+        self.dbaktuellerdatastringnid_2.setFrame(True)
+        self.dbaktuellerdatastringnid_2.setObjectName(_fromUtf8("dbaktuellerdatastringnid_2"))
+        self.line = QtGui.QFrame(self.groupBox_22)
+        self.line.setGeometry(QtCore.QRect(380, 140, 251, 20))
+        self.line.setFrameShape(QtGui.QFrame.HLine)
+        self.line.setFrameShadow(QtGui.QFrame.Sunken)
+        self.line.setObjectName(_fromUtf8("line"))
+        self.line_2 = QtGui.QFrame(self.groupBox_22)
+        self.line_2.setGeometry(QtCore.QRect(370, 160, 20, 41))
+        self.line_2.setFrameShape(QtGui.QFrame.VLine)
+        self.line_2.setFrameShadow(QtGui.QFrame.Sunken)
+        self.line_2.setObjectName(_fromUtf8("line_2"))
         self.tabs.addTab(self.tab_4, _fromUtf8(""))
         self.tab_5 = QtGui.QWidget()
         self.tab_5.setObjectName(_fromUtf8("tab_5"))
@@ -457,7 +476,7 @@ class Ui_PiBeacon(object):
         self.menubar.addAction(self.menuSave.menuAction())
 
         self.retranslateUi(PiBeacon)
-        self.tabs.setCurrentIndex(0)
+        self.tabs.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(PiBeacon)
 
     def retranslateUi(self, PiBeacon):
@@ -516,6 +535,8 @@ class Ui_PiBeacon(object):
         self.label_23.setText(_translate("PiBeacon", "TX", None))
         self.dbaktuellerdatastringiid.setPlaceholderText(_translate("PiBeacon", "Insert Instance ID", None))
         self.label_25.setText(_translate("PiBeacon", "Instance ID", None))
+        self.checkBox.setText(_translate("PiBeacon", "Pairing", None))
+        self.dbaktuellerdatastringnid_2.setPlaceholderText(_translate("PiBeacon", "Insert Password", None))
         self.tabs.setTabText(self.tabs.indexOf(self.tab_4), _translate("PiBeacon", "DHBW-Beacon", None))
         self.bcscan.setTitle(_translate("PiBeacon", "Beacon Scan", None))
         self.bcscanausgabe.setHtml(_translate("PiBeacon", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

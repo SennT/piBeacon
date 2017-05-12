@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#-*- coding: utf-8 -*-
 
 #  **************************************************************
 #   Projekt         : PiBeacon
@@ -158,6 +159,12 @@ class Controller(IntComm):
         elif msg_type is IntMessage.STOP_BEACON:
             DBG('Stopped Beacon')
             self._pibeacon.stop()
+        elif msg_type is IntMessage.PAIRING_ENABLED:
+                DBG('Pairing enable')
+                self._pibeacon.pairing_enable()
+        elif msg_type is IntMessage.PAIRING_DISABLED:
+                DBG('Pairing disable')
+                self._pibeacon.pairing_disable()               
         elif msg_type is IntMessage.START_SCAN_BLE:
             if not self._pibeacon.is_running():
                 DBG('Started BLE Scan')

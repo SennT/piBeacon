@@ -1,0 +1,41 @@
+import bluetooth
+from comm.intcomm import IntComm
+from comm.intmessage import IntMessage as IntMsg
+
+class Server(IntComm):
+
+   _commCallback = None
+
+   def __init__(self, commCallback):
+        self._commCallback = commCallback
+
+   def comm(self, msg):
+        pass
+
+   def stopServer(self):
+        client_sock.close()
+        server_sock.close()
+   
+   def startServer(self):
+        print ("Starting server")
+        server_sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
+
+        port = 1
+        server_sock.bind(("",port))
+        server_sock.listen(1)
+        port = server_sock.getsockname()[1]
+
+        self._commCallback(IntMsg(IntMsg.SIGNAL_DHBWBEACON, {'DATA': 'Started new Server on Socket ' + str(port)}))
+
+   
+        
+        self._commCallback(IntMsg(IntMsg.SIGNAL_DHBWBEACON, {'DATA': 'Waiting for connection on RFCOMM channel %d' % port}))
+
+        client_sock,address = server_sock.accept()
+
+        self._commCallback(IntMsg(IntMsg.SIGNAL_DHBWBEACON, {'DATA': 'Accepted connection from ' + address}))
+
+        self._commCallback(IntMsg(IntMsg.SIGNAL_DHBWBEACON, {'disconnected' + str(client_info)}))
+        client_sock.close()
+        server_sock.close()
+

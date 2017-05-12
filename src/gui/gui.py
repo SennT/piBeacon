@@ -318,6 +318,8 @@ class Gui(IntComm):
         self._ui.dbstart.clicked.connect(self.dbstart_clicked)
         self._ui.dbstop.clicked.connect(self.dbstop_clicked)
         self._ui.dbsetasautostart.clicked.connect(self.dbsetasautostart_clicked)
+        self._ui.checkBox.stateChanged.connect(self.checkBox_isChecked)
+        
 
     def dbstart_clicked(self):
         msg = IntMessage(IntMessage.START_DHBWBEACON, {'NID': self._ui.dbaktuellerdatastringnid.text(),
@@ -342,6 +344,16 @@ class Gui(IntComm):
         DBG("Set as Autostart clicked")
         msg = IntMessage(IntMessage.SET_AUTOSTART_DHBWBEACON)
         self._commCallback(msg)
+
+    def checkBox_isChecked(self):
+        if self._ui.checkBox.isChecked():
+            DBG("Pairing checkt")
+            msg = IntMessage(IntMessage.PAIRING_ENABLED)
+            self._commCallback(msg)
+        else:
+            DBG("Pairing checkt")
+            msg = IntMessage(IntMessage.PAIRING_DISABLED)
+            self._commCallback(msg)
 
     #ui closed
     def uiclosed(self):

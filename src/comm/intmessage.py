@@ -50,6 +50,8 @@ class IntMessage():
     SAVE_DHBWBEACON = 31
     SAVE_EDDYSTONE = 32
     SAVE_ALTBEACON = 33
+    PAIRING_ENABLED = 34
+    PAIRING_DISABLED = 35
 
     _type = None
     _payload = None
