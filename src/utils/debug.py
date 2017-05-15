@@ -1,5 +1,5 @@
 # TODO: Read debug switch from config
-debug = True
+debug = False
 
 def DBG(msg):
     if debug:

@@ -67,3 +67,19 @@ To activate the automatic startup of PiBeacon in LXDE (which is the default desk
 ### GUI Mode
 
 Run the ```src/controller.py``` without any arguments to run the PiBeacon in GUI mode.
+
+#######################################################################################
+# PiBeacon
+
+This project was build during the module "Software Engineering Basics II" from the crystal team in course TIF15A.
+
+Team Members:
+
+* Adrain Hoehl
+* Felix Dubberke
+* Pascal Duttlinger
+* Timo Senn
+
+### Pairing
+To activated the pairing function check the checkbox on the DHBW_Beacon-Tab. Then the RFCOMM-Server starts in a new thread.
+

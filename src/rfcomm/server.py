@@ -1,4 +1,6 @@
 import bluetooth
+import socket
+import _thread
 from comm.intcomm import IntComm
 from comm.intmessage import IntMessage as IntMsg
 
@@ -11,12 +13,9 @@ class Server(IntComm):
 
    def comm(self, msg):
         pass
-
-   def stopServer(self):
-        client_sock.close()
-        server_sock.close()
    
    def startServer(self):
+         
         print ("Starting server")
         server_sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 
@@ -27,8 +26,7 @@ class Server(IntComm):
 
         self._commCallback(IntMsg(IntMsg.SIGNAL_DHBWBEACON, {'DATA': 'Started new Server on Socket ' + str(port)}))
 
-   
-        
+
         self._commCallback(IntMsg(IntMsg.SIGNAL_DHBWBEACON, {'DATA': 'Waiting for connection on RFCOMM channel %d' % port}))
 
         client_sock,address = server_sock.accept()

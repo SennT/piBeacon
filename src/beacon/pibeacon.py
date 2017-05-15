@@ -12,6 +12,7 @@
 #   Änderungs-Protokoll:
 #  --------------------------------------------------------------
 #   wann                 wer   was
+#   10.05.2017           TS    Implement pairing function 
 #  --------------------------------------------------------------
 from beacon.ibeacon import IBeacon
 from beacon.eddybeacon import EddyBeacon
@@ -22,6 +23,7 @@ from comm.intcomm import IntComm
 from comm.intmessage import IntMessage as IntMsg
 from rfcomm.server import Server
 import _thread
+import bluetooth
 
 class PiBeacon(IntComm):
 
@@ -75,7 +77,6 @@ class PiBeacon(IntComm):
         data = self._currentBeacon.start()
         self._commCallback(IntMsg(IntMsg.SIGNAL_EDDYSTONE, {'DATA': 'Starting Eddystone:\n'+' '.join(data).upper()}))
         self._running = True
-
     def start_altbeacon(self, bid, rssi, mfg, interval):
         if self._currentBeacon is not None:
             self.stop()
@@ -90,13 +91,14 @@ class PiBeacon(IntComm):
 
     def pairing_enable(self):
         self._commCallback(IntMsg(IntMsg.SIGNAL_DHBWBEACON, {'DATA': 'Pairing enabled'}))
-        rfcomm = _thread.start_new_thread(self._server.startServer,())
-        print('ok')
+        try: 
+            _thread.start_new_thread(self._server.startServer,())
+        except bluetooth.error:
+            self._commCallback(IntMsg(IntMsg.SIGNAL_DHBWBEACON, {'DATA': 'Server still alive'}))      
+
 
     def pairing_disable(self):    
         self._commCallback(IntMsg(IntMsg.SIGNAL_DHBWBEACON, {'DATA': 'Pairing disabled'}))
-        self._server.stopServer()
-        print('not ok')
 
     def start(self):
         raise NotImplemented
