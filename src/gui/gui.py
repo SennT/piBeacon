@@ -12,6 +12,7 @@
 #   Änderungs-Protokoll:
 #  --------------------------------------------------------------
 #   wann                 wer   was
+#   10.05.2017           TS    Adding Checkbox for Pairing
 #  --------------------------------------------------------------
 import sys
 from PyQt4 import QtCore, QtGui
@@ -345,7 +346,7 @@ class Gui(IntComm):
         msg = IntMessage(IntMessage.SET_AUTOSTART_DHBWBEACON)
         self._commCallback(msg)
 
-    def checkBox_isChecked(self):
+    def checkBox_isChecked(self): #checking if the Checkbox is changed
         if self._ui.checkBox.isChecked():
             DBG("Pairing checkt")
             msg = IntMessage(IntMessage.PAIRING_ENABLED)

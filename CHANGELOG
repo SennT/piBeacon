@@ -1,3 +1,8 @@
+v 1.1.0
+  - added new Button for pairing
+  - added new Module: RFCOMM-Server
+  - added function for start and stop Server
+
 v 1.0.0
   - set as default now available
   - advertisements of default beacon on startup
